@@ -1,5 +1,7 @@
 // import { Navbar } from "@/components/layout/Navbar";
 
+import { Navbar } from "@/src/components/layout/Navbar";
+
 export default function CommonLayout({
   children,
 }: {
@@ -7,7 +9,7 @@ export default function CommonLayout({
 }) {
   return (
     <>
-      {/* <Navbar /> */}
+      <Navbar />
       <main className="min-h-screen container mx-auto p-6">{children}</main>
     </>
   );
