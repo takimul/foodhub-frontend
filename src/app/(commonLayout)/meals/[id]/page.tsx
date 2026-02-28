@@ -28,10 +28,11 @@
 // }
 
 import { notFound } from "next/navigation";
-import { mealService } from "@/src/services/meal.service";
 import { RatingStars } from "@/src/components/meal/RatingStars";
 import { AddToCartButton } from "@/src/components/meal/AddToCartButton";
 import { ReviewSection } from "@/src/components/meal/ReviewSection";
+import { mealService } from "@/src/services/meal.service";
+import Link from "next/link";
 
 interface Props {
   params: Promise<{ id: string }>;
@@ -75,7 +76,15 @@ export default async function MealDetails({ params }: Props) {
           <div className="text-2xl font-semibold mt-6">${meal.price}</div>
 
           <div className="mt-2 text-sm">
-            By <span className="font-medium">{meal.provider?.name}</span>
+            By{" "}
+            <span className="font-medium">
+              <Link
+                href={`/providers/${meal?.providerId}`}
+                className="text-orange-600 hover:underline"
+              >
+                {meal.provider?.name}
+              </Link>
+            </span>
           </div>
 
           {meal.isAvailable ? (
