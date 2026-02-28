@@ -1,15 +1,24 @@
-import { apiFetch } from "./api";
+import { serverFetch } from "@/src/services/fetch/serverFetch";
+
+export interface Meal {
+  id: string;
+  title: string;
+  description: string;
+  price: number;
+  image?: string | null;
+  averageRating: number;
+  isAvailable: boolean;
+  category?: { name: string };
+  provider?: { name: string };
+  reviews?: any[];
+}
 
 export const mealService = {
   getMeals: async () => {
-    return apiFetch("/meals", {
-      next: { revalidate: 30 },
-    });
+    return serverFetch<{ success: boolean; data: Meal[] }>("/meals");
   },
 
   getMealById: async (id: string) => {
-    return apiFetch(`/meals/${id}`, {
-      next: { revalidate: 30 },
-    });
+    return serverFetch<{ success: boolean; data: Meal }>(`/meals/${id}`);
   },
 };

@@ -5,6 +5,10 @@ import { mealService } from "@/src/services/meal.service";
 export default async function HomePage() {
   const meals = await mealService.getMeals();
 
+  if (!meals.success) {
+    return <div>Failed to load meals</div>;
+  }
+
   return (
     <div>
       <h1 className="text-3xl font-bold mb-6">Discover Delicious Meals 🍱</h1>

@@ -14,25 +14,29 @@ export function DashboardSidebar({ role }: Props) {
 
       {role === "ADMIN" && (
         <>
-          <Link href="/dashboard/admin">Overview</Link>
-          <Link href="/dashboard/admin/users">Users</Link>
-          <Link href="/dashboard/admin/orders">Orders</Link>
-          <Link href="/dashboard/admin/categories">Categories</Link>
+          <Link href="/admin">Overview</Link>
+          <Link href="/admin/users">Users</Link>
+          <Link href="/admin/orders">Orders</Link>
+          <Link href="/admin/categories">Categories</Link>
         </>
       )}
 
       {role === "PROVIDER" && (
         <>
-          <Link href="/dashboard/provider">Overview</Link>
-          <Link href="/dashboard/provider/menu">My Meals</Link>
-          <Link href="/dashboard/provider/orders">Orders</Link>
+          <Link href="/provider/dashboard">Overview</Link>
+          <Link href="/provider/meals">My Meals</Link>
+          <Link href="/provider/orders">Orders</Link>
         </>
       )}
 
       {role === "CUSTOMER" && (
         <>
-          <Link href="/dashboard/customer">Overview</Link>
-          <Link href="/dashboard/customer/orders">My Orders</Link>
+          <div className="flex flex-col gap-2">
+            <Link href="/customer">Overview</Link>
+            {/* <Link href="/customer/checkout">Checkout</Link> */}
+            <Link href="/customer/cart">Cart</Link>
+            <Link href="/customer/orders">My Orders</Link>
+          </div>
         </>
       )}
     </aside>
