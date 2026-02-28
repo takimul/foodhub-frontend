@@ -1,4 +1,5 @@
 import { orderServer } from "@/src/services/order.server";
+import Link from "next/link";
 
 export default async function OrdersPage() {
   const res = await orderServer.getMyOrders();
@@ -26,6 +27,7 @@ export default async function OrdersPage() {
           <p>
             <strong>Address:</strong> {order.address}
           </p>
+          <Link href={`/customer/orders/${order.id}`}> View Details</Link>
         </div>
       ))}
     </div>
