@@ -1,6 +1,5 @@
 import ProviderProfileForm from "@/src/components/provider/ProviderProfileForm";
 import { serverFetch } from "@/src/services/fetch/serverFetch";
-// import ProviderProfileForm from "@/src/components/provider/ProviderProfileForm";
 
 export default async function ProviderProfilePage() {
   const res = (await serverFetch("/providers/me", undefined, true)) as {
