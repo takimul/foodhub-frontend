@@ -43,16 +43,30 @@ export function RegisterForm() {
       const toastId = toast.loading("Creating account...");
 
       try {
-        const { error } = await authClient.signUp.email({
-          name: value.name,
-          email: value.email,
-          password: value.password,
-          // @ts-expect-error Better Auth typing limitation
-          role: value.role,
-        });
+        // const { error } = await authClient.signUp.email({
+        //   name: value.name,
+        //   email: value.email,
+        //   password: value.password,
+        //   // @ts-expect-error Better Auth typing limitation
+        //   role: value.role,
+        // });
+        const res = await fetch(
+          `${process.env.NEXT_PUBLIC_API_URL}/auth/register`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(value),
+          },
+        );
 
-        if (error) {
-          toast.error(error.message, { id: toastId });
+        const data = await res.json();
+
+        if (!data.success) {
+          toast.error(data.message || "Failed to create account", {
+            id: toastId,
+          });
           return;
         }
 
@@ -61,7 +75,7 @@ export function RegisterForm() {
         });
 
         router.push("/");
-      } catch {
+      } catch (error) {
         toast.error("Something went wrong", { id: toastId });
       }
     },

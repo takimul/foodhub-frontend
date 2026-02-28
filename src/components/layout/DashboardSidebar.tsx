@@ -13,19 +13,22 @@ export function DashboardSidebar({ role }: Props) {
       <h2 className="text-lg font-bold">Dashboard</h2>
 
       {role === "ADMIN" && (
-        <>
-          <Link href="/admin">Overview</Link>
+        <div className="flex flex-col gap-2">
+          <Link href="/admin/dashboard">Overview</Link>
           <Link href="/admin/users">Users</Link>
           <Link href="/admin/orders">Orders</Link>
           <Link href="/admin/categories">Categories</Link>
-        </>
+        </div>
       )}
 
       {role === "PROVIDER" && (
         <>
-          <Link href="/provider/dashboard">Overview</Link>
-          <Link href="/provider/meals">My Meals</Link>
-          <Link href="/provider/orders">Orders</Link>
+          <div className="flex flex-col gap-2">
+            <Link href="/provider/dashboard">Overview</Link>
+            <Link href="/provider/meals">My Meals</Link>
+            <Link href="/provider/orders">Orders</Link>
+            <Link href="/provider/profile">Profile</Link>
+          </div>
         </>
       )}
 
