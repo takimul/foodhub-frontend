@@ -3,7 +3,8 @@ import Link from "next/link";
 import { Button } from "@/src/components/ui/button";
 
 export default async function ProviderMealsPage() {
-  const res = await serverFetch<any>("/meals", undefined, true);
+  const res = await serverFetch<any>("/meals/provider/meals", undefined, true);
+  console.log("Meals response:", res);
 
   if (!res?.success) {
     return <div className="p-6">Failed to load meals</div>;

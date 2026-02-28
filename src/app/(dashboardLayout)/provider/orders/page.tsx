@@ -19,7 +19,7 @@ export default function ProviderOrdersPage() {
   }, []);
 
   const updateStatus = async (id: string, status: string) => {
-    await clientFetch(`/orders/${id}/status`, {
+    await clientFetch(`/orders/provider/${id}/status`, {
       method: "PATCH",
       body: JSON.stringify({ status }),
     });
